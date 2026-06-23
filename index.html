@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AMF — Crescimento de Negócios</title>
+<meta name="description" content="Assessoria estratégica de crescimento para marcas de arquitetura e design de alto padrão." />
+<meta name="theme-color" content="#0F0D0C" />
+<link rel="icon" href="favicon.png" type="image/png" />
+<link rel="dns-prefetch" href="//wa.me" />
+<link rel="preload" as="image" href="assets/hero.jpg" fetchpriority="high" />
+<link rel="preload" as="font" type="font/ttf" href="assets/fonts/CoinageCapsEricGillW01-Rg.ttf" crossorigin />
+<link rel="preload" as="font" type="font/otf" href="assets/fonts/Acumin-RPro.otf" crossorigin />
+<style>
+@font-face{font-family:'Coinage';src:url('assets/fonts/CoinageCapsEricGillW01-Rg.ttf')format('truetype'),url('assets/fonts/CoinageCapsEricGill.otf')format('opentype');font-weight:400;font-display:swap}
+@font-face{font-family:'Acumin';src:url('assets/fonts/Acumin-RPro.otf')format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Acumin';src:url('assets/fonts/Acumin-ItPro.otf')format('opentype');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Acumin';src:url('assets/fonts/Acumin-BdPro.otf')format('opentype');font-weight:700;font-style:normal;font-display:swap}
+
+:root{
+  --ink:#1A1714;--paper:#EFEFED;--stone:#CEC9C0;--ash:#5E5751;--deep:#0F0D0C;
+  --rule:1px solid #CEC9C0;--rule-d:1px solid rgba(206,201,192,.18);
+  --serif:'Coinage','Georgia',serif;--sans:'Acumin','Helvetica Neue',sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);--pad:clamp(1.5rem,5vw,6rem);--sec:clamp(5rem,10vh,9rem);
+  --stone-06:rgba(206,201,192,.06);--stone-08:rgba(206,201,192,.08);
+  --stone-12:rgba(206,201,192,.12);--stone-30:rgba(206,201,192,.3);--ink-hl:#2C2926;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);font-weight:400;background:var(--paper);color:var(--ink);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4,h5,h6{font-weight:inherit;font-size:inherit;line-height:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--ink);color:var(--paper)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--paper)}::-webkit-scrollbar-thumb{background:var(--ash)}
+:focus-visible{outline:2px solid var(--stone);outline-offset:3px}
+
+.wrap{max-width:1320px;margin:0 auto;padding:0 var(--pad)}
+.dk{background:var(--ink);color:var(--paper)}
+.disp{font-family:var(--serif);font-weight:400;letter-spacing:.05em;text-transform:uppercase;line-height:1.05}
+hr.r{border:none;border-top:var(--rule);margin:2rem 0}
+hr.rd{border:none;border-top:var(--rule-d);margin:2rem 0}
+
+/* NAV */
+#nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1rem var(--pad);background:rgba(15,13,12,.96);backdrop-filter:blur(14px);transition:padding .3s;border-bottom:1px solid var(--stone-12)}
+#nav.s{padding-top:.6rem;padding-bottom:.6rem}
+.n-logo{text-decoration:none}
+.n-logo img{height:1.6rem;width:auto}
+.n-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.n-links a{font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);text-decoration:none;transition:color .2s}
+.n-links a:hover{color:var(--stone)}
+.n-btn{font-family:var(--sans);font-size:.7rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--paper);border:1px solid var(--stone-30);padding:.85rem 1.5rem;min-height:44px;display:inline-flex;align-items:center;text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.n-btn:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+
+/* HAMBURGER */
+.n-ham{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:8px;min-width:44px;min-height:44px;align-items:center;-webkit-tap-highlight-color:transparent}
+.n-ham span{display:block;width:22px;height:1.5px;background:var(--paper);transition:transform .3s var(--ease),opacity .2s,width .2s}
+.n-ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.n-ham.open span:nth-child(2){opacity:0;width:0}
+.n-ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* MOBILE MENU */
+#mob-menu{position:fixed;inset:0;z-index:49;background:rgba(15,13,12,.97);backdrop-filter:blur(14px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:5rem var(--pad) var(--pad);opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
+#mob-menu.open{opacity:1;pointer-events:auto}
+.mob-links{list-style:none;display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem}
+.mob-links a{font-family:var(--serif);font-size:clamp(1.8rem,7vw,3rem);letter-spacing:.05em;text-transform:uppercase;color:var(--paper);text-decoration:none;opacity:.5;transition:opacity .2s}
+.mob-links a:hover,.mob-links a:focus{opacity:1}
+.mob-cta{font-family:var(--sans);font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);border:1px solid var(--stone-30);padding:.85rem 2rem;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem;transition:background .2s,color .2s}
+.mob-cta:hover{background:var(--paper);color:var(--ink)}
+
+/* WA */
+.wa-btn{position:fixed;bottom:2rem;right:2rem;z-index:100;width:3.25rem;height:3.25rem;background:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:transform .2s,box-shadow .2s;text-decoration:none}
+.wa-btn:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(0,0,0,.4)}
+.wa-btn svg{width:1.7rem;height:1.7rem;fill:var(--ink)}
+
+/* HERO */
+#hero{min-height:100svh;position:relative;display:flex;flex-direction:column;justify-content:flex-end}
+.h-photo{position:absolute;inset:0;overflow:hidden;background:#2A2520}
+.h-photo img{width:100%;height:100%;object-fit:cover;object-position:60% center}
+.h-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(15,13,12,.88) 30%,rgba(15,13,12,.15) 100%)}
+.h-text{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:space-between;padding:7rem var(--pad) clamp(3rem,6vh,5rem);min-height:100svh;box-sizing:border-box}
+.h-top{display:flex;align-items:flex-start;padding-top:1.5rem}
+.h-bottom{display:flex;flex-direction:column}
+.h-hl-sm{font-family:var(--serif);font-size:clamp(1.6rem,3.2vw,4rem);letter-spacing:.04em;text-transform:uppercase;line-height:.95;color:var(--paper);margin:0;opacity:0;transform:translateY(16px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.h-hl{font-family:var(--serif);font-size:clamp(3.2rem,6.5vw,7.5rem);letter-spacing:.03em;text-transform:uppercase;line-height:.95;color:var(--paper);margin-bottom:2.5rem;max-width:58%;opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease) .12s,transform .9s var(--ease) .12s}
+.h-hl em{font-style:italic;color:var(--stone)}
+.h-body{max-width:44ch;margin-bottom:3rem;opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease) .24s,transform .8s var(--ease) .24s}
+.h-body p{font-size:clamp(1rem,1.3vw,1.05rem);line-height:1.75;color:var(--stone)}
+.h-acts{display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;opacity:0;transform:translateY(12px);transition:opacity .7s var(--ease) .36s,transform .7s var(--ease) .36s}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.8rem;font-family:var(--sans);font-size:.73rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:1rem 2.2rem;border:none;cursor:pointer;position:relative;overflow:hidden;transition:box-shadow .3s}
+.btn svg{flex-shrink:0;transition:transform .3s var(--ease)}
+.btn:hover svg{transform:translateX(5px)}
+.btn span{position:relative;z-index:1}
+.btn::after{content:'';position:absolute;inset:0;transform:translateX(-100%);transition:transform .4s var(--ease)}
+.btn-lt{background:var(--paper);color:var(--ink)}.btn-lt::after{background:var(--stone)}
+.btn-lt:hover{box-shadow:0 10px 40px rgba(26,23,20,.2)}.btn-lt:hover::after{transform:translateX(0)}
+.btn-dk{background:var(--ink);color:var(--paper)}.btn-dk::after{background:var(--ink-hl)}
+.btn-dk:hover{box-shadow:0 10px 40px rgba(26,23,20,.35)}.btn-dk:hover::after{transform:translateX(0)}
+.lk{font-family:var(--sans);font-size:.73rem;letter-spacing:.12em;text-transform:uppercase;color:var(--stone);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:1px;transition:color .2s,border-color .2s}
+.lk:hover{color:var(--paper);border-color:currentColor}
+
+/* STATS */
+#stats{border-top:var(--rule);border-bottom:var(--rule)}
+.sb{display:grid;grid-template-columns:repeat(4,1fr)}
+.st{padding:clamp(3rem,6vh,5rem) clamp(2rem,3vw,3.5rem);border-right:var(--rule)}
+.st:last-child{border-right:none}
+.st-n{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5.5rem);letter-spacing:.03em;color:var(--ink);line-height:1;margin-bottom:.75rem}
+.st-l{font-size:.92rem;font-weight:700;line-height:1.55;color:var(--ash);max-width:22ch}
+
+/* AUTH */
+#auth{padding:var(--sec) 0;border-bottom:var(--rule)}
+.auth-g{display:grid;grid-template-columns:5fr 7fr;gap:clamp(3rem,6vw,7rem);align-items:center}
+.auth-hl{font-size:clamp(2rem,3.8vw,3.5rem);margin-bottom:1.5rem}
+.body-t{font-size:clamp(.9rem,1.3vw,1.05rem);line-height:1.75;color:var(--ash);font-weight:700}
+.dk .body-t{color:var(--stone)}
+
+/* PROBLEM */
+#prob{display:grid;grid-template-columns:1fr 1fr;min-height:clamp(60vh,72vh,820px)}
+.prob-photo{position:relative;overflow:hidden;background:#1E1B18}
+.prob-photo img{width:100%;height:100%;object-fit:cover;opacity:.85}
+.prob-cnt{padding:var(--sec) clamp(3rem,6vw,6rem);display:flex;flex-direction:column;justify-content:center}
+.prob-hl{font-size:clamp(1.8rem,3.2vw,3rem);margin-bottom:1.5rem}
+.prob-list{list-style:none;margin-top:2rem}
+.pi{display:flex;gap:.75rem;align-items:baseline;padding:.2rem 0;font-size:clamp(.95rem,1.4vw,1.1rem);color:var(--stone);line-height:1.65}
+.pi::before{content:'—';color:var(--ash);flex-shrink:0;font-size:.75em}
+.prob-stmt{margin-top:2rem;font-weight:700;font-size:clamp(1rem,1.6vw,1.2rem);color:var(--stone);line-height:1.65}
+.prob-stmt strong{color:var(--paper)}
+
+/* PILLARS */
+#pillars{padding:var(--sec) 0;border-bottom:var(--rule)}
+.pill-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,7rem);align-items:end;margin-bottom:3.5rem}
+.pill-hl{font-size:clamp(1.8rem,3.5vw,3.2rem)}
+.pr{display:grid;grid-template-columns:20ch 1fr 2rem;align-items:center;gap:clamp(2rem,5vw,5rem);padding:2rem 0;border-bottom:var(--rule);cursor:default;transition:background .2s}
+.pr:first-child{border-top:var(--rule)}
+.pr:hover{background:var(--stone-08)}
+.pr-name{font-family:var(--serif);font-size:clamp(.88rem,1.4vw,1.1rem);letter-spacing:.07em;text-transform:uppercase;color:var(--ink);font-weight:700}
+.pr-desc{font-size:.87rem;color:var(--ash);line-height:1.55}
+.pr-arr{color:var(--stone);opacity:0;transform:translateX(-8px);transition:opacity .2s,transform .3s var(--ease)}
+.pr:hover .pr-arr{opacity:1;transform:translateX(0)}
+
+/* METHOD */
+#method{padding:var(--sec) 0}
+.meth-g{display:grid;grid-template-columns:1fr 1fr;gap:clamp(4rem,8vw,8rem);align-items:center}
+.meth-hl{font-size:clamp(1.8rem,3.2vw,3rem);margin-bottom:1.5rem}
+.meth-qt{margin-top:2.5rem;padding-top:2.5rem;border-top:var(--rule-d);font-style:italic;font-size:clamp(.95rem,1.5vw,1.1rem);color:var(--stone);line-height:1.7}
+.amf-rows{border-top:var(--rule-d)}
+.amf-row{display:grid;grid-template-columns:7rem 1fr;border-bottom:var(--rule-d);transition:background .25s;cursor:default}
+.amf-row:hover{background:var(--stone-06)}
+.amf-l{font-family:var(--serif);font-size:clamp(4rem,7vw,6.5rem);letter-spacing:.04em;color:var(--paper);display:flex;align-items:center;justify-content:center;border-right:1px solid var(--stone-30);padding:2.25rem 1rem}
+.amf-c{padding:2rem 1.75rem;display:flex;flex-direction:column;justify-content:center}
+.amf-w{font-family:var(--serif);font-size:clamp(1rem,1.6vw,1.3rem);letter-spacing:.1em;text-transform:uppercase;color:var(--paper);margin-bottom:.6rem}
+.amf-d{font-size:.88rem;color:var(--stone);line-height:1.65}
+
+/* FOR WHOM */
+#whom{padding:var(--sec) 0;border-top:var(--rule);border-bottom:var(--rule)}
+.whom-g{display:grid;grid-template-columns:1fr 1fr;gap:clamp(4rem,8vw,8rem);align-items:start}
+.whom-hl{font-size:clamp(1.4rem,2.2vw,2rem);margin-bottom:1.5rem}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0 2rem}
+.tag{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ash);border:1px solid var(--stone);padding:.4rem 1rem;transition:background .2s,color .2s,border-color .2s;cursor:default}
+.tag:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.wl{border-top:var(--rule)}
+.wl-row{display:flex;align-items:center;gap:1.25rem;padding:1.2rem 0;border-bottom:var(--rule);font-size:.92rem;font-weight:700;color:var(--ash);line-height:1.5;cursor:default;transition:color .2s}
+.wl-row:hover{color:var(--ink)}
+.wl-ico{width:1.2rem;height:1.2rem;border:1px solid var(--stone);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wl-ico svg{width:.55rem;height:.55rem}
+
+/* TRANSFORMATION */
+#trans{padding:var(--sec) 0;border-bottom:var(--rule)}
+.trans-top{display:flex;justify-content:center;margin-bottom:4rem}
+.trans-hl{font-size:clamp(2rem,3.4vw,3.4rem);text-align:center;width:100%}
+.oc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(3rem,5vw,5rem);border-top:var(--rule);margin-bottom:4rem}
+.oc{padding:2rem 0;border-bottom:var(--rule);display:flex;gap:1.5rem;align-items:start}
+.oc-ico{width:3rem;height:3rem;border:1px solid var(--stone);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--ink)}
+.oc-ico svg{width:1.2rem;height:1.2rem}
+.oc-t{font-family:var(--serif);font-size:clamp(1rem,1.5vw,1.2rem);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);margin-bottom:.4rem}
+.trans-ft{border-top:var(--rule);padding-top:3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.trans-st{font-family:var(--serif);font-size:clamp(1.3rem,2.5vw,2.2rem);letter-spacing:.04em;text-transform:uppercase;color:var(--ink);max-width:28ch;line-height:1.2}
+.trans-st em{color:var(--ash);font-style:italic}
+
+/* CTA */
+#cta{display:grid;grid-template-columns:1fr 1fr;min-height:clamp(65vh,80vh,960px)}
+.cta-photo{position:relative;overflow:hidden;background:var(--deep)}
+.cta-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;opacity:.8;transform:scale(1.1);transform-origin:center top}
+.cta-cnt{background:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:clamp(4rem,8vw,8rem) clamp(3rem,6vw,7rem)}
+.cta-hl{font-size:clamp(1.5rem,2.6vw,2.4rem);margin-bottom:1.25rem}
+.cta-end{margin-top:2.5rem;padding-top:2rem;border-top:var(--rule);font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2vw,1.6rem);color:var(--ink);letter-spacing:.02em;line-height:1.3}
+
+/* FOOTER */
+footer{border-top:var(--rule-d);padding:2.5rem 0}
+.ft-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
+.ft-c{font-size:.7rem;color:var(--stone);margin-top:.35rem}
+.ft-t{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stone);text-align:right;line-height:1.8}
+
+/* REVEALS */
+.rv,.rvl,.rvr{opacity:0;transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.rv{transform:translateY(24px)}.rvl{transform:translateX(-24px)}.rvr{transform:translateX(24px)}
+.rv.go,.rvl.go,.rvr.go{opacity:1;transform:none}
+.stg>*{opacity:0;transform:translateY(18px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.stg.go>*:nth-child(1){opacity:1;transform:none;transition-delay:0s}
+.stg.go>*:nth-child(2){opacity:1;transform:none;transition-delay:.07s}
+.stg.go>*:nth-child(3){opacity:1;transform:none;transition-delay:.14s}
+.stg.go>*:nth-child(4){opacity:1;transform:none;transition-delay:.21s}
+.stg.go>*:nth-child(5){opacity:1;transform:none;transition-delay:.28s}
+.stg.go>*:nth-child(6){opacity:1;transform:none;transition-delay:.35s}
+.stg.go>*:nth-child(7){opacity:1;transform:none;transition-delay:.42s}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rv,.rvl,.rvr,.stg>*,.h-hl,.h-body,.h-acts{opacity:1!important;transform:none!important}
+}
+
+/* 980px */
+@media(max-width:980px){
+  #prob{grid-template-columns:1fr}.prob-photo{display:none}
+  .auth-g,.meth-g,.whom-g{grid-template-columns:1fr;gap:2.5rem}
+  .pill-head{grid-template-columns:1fr}
+  .sb{grid-template-columns:1fr 1fr}
+  .st:nth-child(2){border-right:none}
+  .st{border-bottom:var(--rule)}
+  .st:nth-child(3),.st:nth-child(4){border-bottom:none}
+  .st:nth-child(4){border-right:none}
+  .pr{grid-template-columns:1fr;gap:.75rem}.pr-arr{display:none}
+  .oc-grid{grid-template-columns:1fr}
+  #cta{grid-template-columns:1fr}.cta-photo{min-height:55vw}
+  .trans-ft{flex-direction:column;align-items:flex-start}
+  .ft-t{text-align:left}
+}
+
+/* 768px — hamburger ativa */
+@media(max-width:768px){
+  .n-links,.n-btn{display:none}
+  .n-ham{display:flex}
+  .h-hl{max-width:100%}
+  .h-hl-sm{font-size:clamp(1.3rem,5vw,2rem)}
+}
+
+/* 580px */
+@media(max-width:580px){
+  .sb{grid-template-columns:1fr}
+  .st{border-right:none;border-bottom:var(--rule)}
+  .st:last-child{border-bottom:none}
+  .h-acts{flex-direction:column;align-items:flex-start}
+}
+
+/* 480px — mobile fino */
+@media(max-width:480px){
+  :root{--pad:1.25rem;--sec:3.5rem}
+  .h-photo img{object-position:82% center}
+  .h-text{padding:5.5rem 1.25rem 2.5rem}
+  .h-top{padding-top:.75rem}
+  .h-hl-sm{font-size:clamp(1.6rem,8.5vw,2.4rem);letter-spacing:.03em}
+  .h-hl{font-size:clamp(2rem,8.5vw,3rem);margin-bottom:1.5rem}
+  .h-body p{font-size:.9rem;line-height:1.65}
+  .h-body{margin-bottom:1.75rem}
+  .btn{font-size:.68rem;padding:.85rem 1.5rem}
+  .st{padding:2rem 1.25rem}
+  .auth-hl{font-size:clamp(1.6rem,7vw,2.2rem)}
+  .pr{gap:.5rem;padding:1.1rem 0}.pr-name{font-size:.85rem}
+  .amf-l{font-size:clamp(3rem,12vw,5rem);padding:1.5rem .75rem}
+  .amf-row{grid-template-columns:5rem 1fr}
+  .whom-hl{font-size:clamp(1.2rem,5.5vw,1.7rem)}
+  .wl-row{font-size:.85rem;padding:1rem 0}
+  .trans-hl{font-size:clamp(1.5rem,7vw,2.2rem)}
+  .cta-hl{font-size:clamp(1.6rem,7vw,2.2rem)}
+  .cta-end{font-size:1rem}
+  .ft-t{text-align:left;font-size:.65rem}
+  .trans-ft{flex-direction:column;align-items:flex-start;gap:1rem}
+  .wa-btn{width:2.75rem;height:2.75rem;bottom:1.25rem;right:1.25rem}
+  .wa-btn svg{width:1.4rem;height:1.4rem}
+}
+
+/* performance */
+#stats,#auth,#prob,#pillars,#method,#whom,#trans,#cta,footer{
+  content-visibility:auto;contain-intrinsic-size:auto 600px
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE MENU -->
+<div id="mob-menu" role="dialog" aria-label="Menu" aria-modal="true">
+  <ul class="mob-links">
+    <li><a href="#auth">Autoridade</a></li>
+    <li><a href="#pillars">Pilares</a></li>
+    <li><a href="#method">Método</a></li>
+    <li><a href="#whom">Para quem</a></li>
+    <li><a href="#trans">Transformação</a></li>
+  </ul>
+  <a href="#cta" class="mob-cta">
+    Diagnóstico
+    <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+<!-- NAV -->
+<nav id="nav" aria-label="Navegação principal">
+  <a href="#" class="n-logo" aria-label="AMF início"><img src="assets/logo-light.png" alt="AMF" decoding="async" /></a>
+  <ul class="n-links">
+    <li><a href="#auth">Autoridade</a></li>
+    <li><a href="#pillars">Pilares</a></li>
+    <li><a href="#method">Método</a></li>
+    <li><a href="#whom">Para quem</a></li>
+    <li><a href="#trans">Transformação</a></li>
+  </ul>
+  <a href="#cta" class="n-btn">Diagnóstico</a>
+  <button class="n-ham" id="ham" aria-expanded="false" aria-controls="mob-menu" aria-label="Abrir menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/55SEUNUMERO" class="wa-btn" target="_blank" rel="noopener" aria-label="Fale pelo WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- HERO -->
+<section id="hero" aria-labelledby="hero-h">
+  <div class="h-photo" aria-hidden="true">
+    <img src="assets/hero.jpg" alt="" loading="eager" fetchpriority="high" decoding="sync" />
+  </div>
+  <div class="h-text">
+    <div class="h-top">
+      <p class="h-hl-sm disp">Não ajudamos marcas a competir.</p>
+    </div>
+    <div class="h-bottom">
+      <h1 class="h-hl disp" id="hero-h">Estruturamos marcas para <em>liderar.</em></h1>
+      <div class="h-body">
+        <p>A AMF organiza posicionamento, venda, operação, experiência e relacionamento para que marcas fortes cresçam com mais direção, valor percebido e previsibilidade.</p>
+      </div>
+      <div class="h-acts">
+        <a href="#cta" class="btn btn-lt" aria-label="Solicitar diagnóstico estratégico">
+          <span>Solicitar diagnóstico</span>
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#method" class="lk">Conhecer o método</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats" aria-label="Números que comprovam">
+  <div class="wrap">
+    <div class="sb" role="list">
+      <div class="st rv" role="listitem">
+        <div class="st-n">+<span class="ctr" data-to="80">0</span></div>
+        <p class="st-l">Negócios reposicionados para crescer com mais valor</p>
+      </div>
+      <div class="st rv" role="listitem" style="transition-delay:.08s">
+        <div class="st-n"><span class="ctr" data-to="10">0</span></div>
+        <p class="st-l">Anos de atuação no mercado de arquitetura e design</p>
+      </div>
+      <div class="st rv" role="listitem" style="transition-delay:.16s">
+        <div class="st-n">R$<span class="ctr" data-to="40">0</span>M</div>
+        <p class="st-l">Em orçamentos gerados para grandes marcas</p>
+      </div>
+      <div class="st rv" role="listitem" style="transition-delay:.24s">
+        <div class="st-n">+<span class="ctr" data-to="25">0</span>%</div>
+        <p class="st-l">De retorno sobre investimento em ações estratégicas</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHORITY -->
+<section id="auth" aria-labelledby="auth-h">
+  <div class="wrap">
+    <div class="auth-g">
+      <div class="rvl">
+        <h2 class="disp auth-hl" id="auth-h">Marca consolidada não pode depender de <em>improviso</em>.</h2>
+      </div>
+      <div class="rvr">
+        <p class="body-t">A AMF já conduziu negócios que tinham entrega, reputação e potencial, mas ainda não estavam sendo percebidos no nível certo pelo mercado.</p>
+        <hr class="r" />
+        <p class="body-t">O trabalho começa onde a maioria para: na leitura do negócio, na organização da estrutura e na construção de um caminho claro entre posicionamento, venda, operação e crescimento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="prob" class="dk" aria-labelledby="prob-h">
+  <div class="prob-photo rvl" aria-hidden="true">
+    <img src="assets/foto-back.jpg" alt="" loading="lazy" decoding="async" />
+  </div>
+  <div class="prob-cnt">
+    <h2 class="disp prob-hl" id="prob-h">Ter demanda não significa ter crescimento estruturado.</h2>
+    <ul class="prob-list stg" aria-label="Sinais de crescimento vulnerável">
+      <li class="pi">Se as vendas dependem quase sempre de indicação,</li>
+      <li class="pi">se os parceiros indicam sem critério,</li>
+      <li class="pi">se o relacionamento não vira oportunidade recorrente,</li>
+      <li class="pi">se o comercial não conduz valor com segurança,</li>
+      <li class="pi">o crescimento ainda está vulnerável.</li>
+    </ul>
+    <p class="prob-stmt">Existe valor circulando, mas sem <strong>direção suficiente</strong> para virar receita com consistência.</p>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars" aria-labelledby="pillars-h">
+  <div class="wrap">
+    <div class="pill-head">
+      <div class="rvl">
+        <h2 class="disp pill-hl" id="pillars-h">A AMF atua onde o crescimento realmente trava.</h2>
+      </div>
+    </div>
+    <div class="stg" role="list" aria-label="Áreas de atuação">
+      <div class="pr" role="listitem">
+        <span class="pr-name">Posicionamento</span>
+        <span class="pr-desc">Para a marca ocupar o lugar certo.</span>
+        <svg class="pr-arr" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pr" role="listitem">
+        <span class="pr-name">Comercial</span>
+        <span class="pr-desc">Para vender com condução, clareza e critério.</span>
+        <svg class="pr-arr" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pr" role="listitem">
+        <span class="pr-name">Marketing</span>
+        <span class="pr-desc">Para comunicar autoridade, não apenas aparecer.</span>
+        <svg class="pr-arr" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pr" role="listitem">
+        <span class="pr-name">Operação</span>
+        <span class="pr-desc">Para reduzir dependência do dono.</span>
+        <svg class="pr-arr" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pr" role="listitem">
+        <span class="pr-name">Receita</span>
+        <span class="pr-desc">Para criar previsibilidade.</span>
+        <svg class="pr-arr" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pr" role="listitem">
+        <span class="pr-name">Experiência</span>
+        <span class="pr-desc">Para sustentar padrão.</span>
+        <svg class="pr-arr" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="pr" role="listitem">
+        <span class="pr-name">Relacionamento</span>
+        <span class="pr-desc">Para gerar indicação, recompra e expansão.</span>
+        <svg class="pr-arr" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHOD -->
+<section id="method" class="dk" aria-labelledby="method-h">
+  <div class="wrap" style="padding-top:var(--sec);padding-bottom:var(--sec)">
+    <div class="meth-g">
+      <div class="rvl">
+        <h2 class="disp meth-hl" id="method-h">A estrutura AMF trabalha sobre três pilares:</h2>
+        <hr class="rd" />
+        <p class="body-t">A AMF não começa pela execução. Começa pela leitura.</p>
+        <p class="body-t" style="margin-top:1.75rem">Entendemos a essência dos donos, o comportamento do cliente, o movimento do mercado e os sinais invisíveis que constroem percepção de valor.</p>
+        <p class="body-t" style="margin-top:1.75rem">Depois, transformamos essa leitura em posicionamento, venda, operação, experiência e relacionamento.</p>
+        <blockquote class="meth-qt">É assim que uma marca deixa de parecer mais uma opção. E passa a ocupar um lugar que só ela poderia ocupar.</blockquote>
+      </div>
+      <div class="rvr">
+        <div class="amf-rows" role="list" aria-label="Os três pilares do método AMF">
+          <div class="amf-row" role="listitem">
+            <div class="amf-l" aria-hidden="true">A</div>
+            <div class="amf-c">
+              <div class="amf-w">Autoridade</div>
+              <p class="amf-d">Define o lugar que a marca ocupa. Sem autoridade clara, o mercado decide por você — e decide errado.</p>
+            </div>
+          </div>
+          <div class="amf-row" role="listitem">
+            <div class="amf-l" aria-hidden="true">M</div>
+            <div class="amf-c">
+              <div class="amf-w">Mecanismo</div>
+              <p class="amf-d">Faz o negócio rodar com consistência. São os processos, o comercial e a operação que sustentam o crescimento.</p>
+            </div>
+          </div>
+          <div class="amf-row" role="listitem">
+            <div class="amf-l" aria-hidden="true">F</div>
+            <div class="amf-c">
+              <div class="amf-w">Fidelização</div>
+              <p class="amf-d">Multiplica resultado. Transforma clientes em rede de expansão — indicação, recompra, reputação.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section id="whom" aria-labelledby="whom-h">
+  <div class="wrap">
+    <div class="whom-g">
+      <div class="rvl">
+        <h2 class="disp whom-hl" id="whom-h">A AMF é para marcas que já cresceram, mas não querem continuar operando como antes.</h2>
+        <div class="tags" aria-label="Segmentos atendidos">
+          <span class="tag">Lojas de arquitetura</span>
+          <span class="tag">Escritórios de arquitetura e design</span>
+          <span class="tag">Construtoras</span>
+          <span class="tag">Imobiliárias</span>
+          <span class="tag">Marcas de alto padrão</span>
+        </div>
+      </div>
+      <div class="rvr">
+        <div class="wl stg" role="list" aria-label="O que buscam">
+          <div class="wl-row" role="listitem"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Quer vender melhor, não mais barato</div>
+          <div class="wl-row" role="listitem"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Quer parar de competir por preço</div>
+          <div class="wl-row" role="listitem"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Quer ser percebida com mais autoridade</div>
+          <div class="wl-row" role="listitem"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Quer organizar equipe e processo</div>
+          <div class="wl-row" role="listitem"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Quer crescer sem perder padrão</div>
+          <div class="wl-row" role="listitem"><span class="wl-ico" aria-hidden="true"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Quer tirar o dono do centro de tudo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMATION -->
+<section id="trans" aria-labelledby="trans-h">
+  <div class="wrap">
+    <div class="trans-top rv">
+      <h2 class="disp trans-hl" id="trans-h">Quando a estrutura muda, a forma como o mercado compra também muda.</h2>
+    </div>
+    <div class="oc-grid stg" role="list" aria-label="Resultados da transformação">
+      <div class="oc" role="listitem">
+        <div class="oc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><div class="oc-t">O cliente entende mais rápido.</div></div>
+      </div>
+      <div class="oc" role="listitem">
+        <div class="oc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><div class="oc-t">A venda fica mais segura.</div></div>
+      </div>
+      <div class="oc" role="listitem">
+        <div class="oc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><div class="oc-t">A proposta ganha valor.</div></div>
+      </div>
+      <div class="oc" role="listitem">
+        <div class="oc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><div class="oc-t">A equipe opera com mais clareza.</div></div>
+      </div>
+      <div class="oc" role="listitem">
+        <div class="oc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><div class="oc-t">A experiência fica mais consistente.</div></div>
+      </div>
+      <div class="oc" role="listitem">
+        <div class="oc-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><div class="oc-t">A marca deixa de disputar por semelhança.</div></div>
+      </div>
+    </div>
+    <div class="trans-ft rv">
+      <p class="trans-st">Esse é o ponto: crescimento real aparece no negócio, <em>não só na comunicação.</em></p>
+      <a href="#cta" class="btn btn-dk">
+        <span>Solicitar diagnóstico</span>
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" aria-labelledby="cta-h">
+  <div class="cta-photo" aria-hidden="true">
+    <img src="assets/foto-cadeira.jpg" alt="" loading="lazy" decoding="async" />
+  </div>
+  <div class="cta-cnt">
+    <p class="rv disp" style="font-size:clamp(1.1rem,1.8vw,1.5rem);color:var(--ink);margin-bottom:.6rem">Sua marca já tem valor.</p>
+    <h2 class="disp cta-hl rv" id="cta-h">Agora ela precisa de estrutura para sustentar o próximo nível.</h2>
+    <hr class="r" />
+    <p class="body-t rv" style="margin-bottom:2.5rem;max-width:44ch">A AMF entra para diagnosticar, direcionar e organizar o crescimento.</p>
+    <a href="https://wa.me/55SEUNUMERO" class="btn btn-dk rv" target="_blank" rel="noopener" aria-label="Quero solicitar um diagnóstico estratégico">
+      <span>Quero solicitar um diagnóstico</span>
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.5h10M8.5 3.5l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <p class="cta-end">Você está pronto para estruturar sua marca em outro nível?</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="dk">
+  <div class="wrap">
+    <div class="ft-in">
+      <div>
+        <img src="assets/logo-light.png" alt="AMF" style="height:1.4rem;width:auto;" decoding="async" />
+        <p class="ft-c">© 2026 AMF Crescimento de Negócios. Todos os direitos reservados.</p>
+      </div>
+      <p class="ft-t">Não ajudamos marcas a competir.<br>Estruturamos marcas para liderar.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('s', scrollY > 70), { passive: true });
+
+const ham = document.getElementById('ham');
+const mobMenu = document.getElementById('mob-menu');
+ham.addEventListener('click', () => {
+  const open = ham.classList.toggle('open');
+  ham.setAttribute('aria-expanded', open);
+  mobMenu.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  ham.classList.remove('open');
+  ham.setAttribute('aria-expanded', 'false');
+  mobMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+setTimeout(() => {
+  ['.h-hl-sm', '.h-hl', '.h-body', '.h-acts'].forEach((sel, i) => {
+    const el = document.querySelector(sel);
+    if (!el) return;
+    setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, i * 160);
+  });
+}, 80);
+
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('go'); io.unobserve(e.target); } });
+}, { threshold: .1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.rv,.rvl,.rvr,.stg').forEach(el => io.observe(el));
+
+function count(el, to, dur = 1500) {
+  const t0 = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(e * to);
+    if (p < 1) requestAnimationFrame(tick); else el.textContent = to;
+  })(t0);
+}
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { count(e.target, +e.target.dataset.to); cio.unobserve(e.target); } });
+}, { threshold: .4 });
+document.querySelectorAll('.ctr').forEach(el => cio.observe(el));
+</script>
+</body>
+</html>
